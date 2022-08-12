@@ -23,7 +23,9 @@ public class Configuration
 	{
 		Objects.requireNonNull(path, "Path inserted is null at the method.");
 		
-		return PLUGIN.configManager().get("config.yml").getString(path.pathString());
+		return PLUGIN.configManager()
+			.get("config.yml")
+			.getString(path.pathString());
 	}
 	
 	/**
@@ -40,7 +42,9 @@ public class Configuration
 	{
 		Objects.requireNonNull(path, "Path inserted is null at the method.");
 		
-		return PLUGIN.configManager().get("config.yml").getInt(path.pathString());
+		return PLUGIN.configManager()
+			.get("config.yml")
+			.getInt(path.pathString());
 	}
 	
 	/**
@@ -54,7 +58,9 @@ public class Configuration
 	{
 		Objects.requireNonNull(path, "Path inserted is null at the method.");
 		
-		return PLUGIN.configManager().get("config.yml").getStringList(path.pathString());
+		return PLUGIN.configManager()
+			.get("config.yml")
+			.getStringList(path.pathString());
 	}
 	
 	/**
