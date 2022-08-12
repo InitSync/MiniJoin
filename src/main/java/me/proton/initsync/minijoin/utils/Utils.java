@@ -94,7 +94,7 @@ public class Utils
 					 ));
 				
 				repeater -= 40L;
-				if (repeater - 20L < 40L) cancel();
+				if (repeater - 40L < 20L) cancel();
 			}
 		}.runTaskTimerAsynchronously(plugin, 0L, 40L);
 	}
@@ -146,7 +146,7 @@ public class Utils
 				
 				progress[0]++;
 				repeater -= 40L;
-				if (repeater - 20L < 40L)
+				if (repeater - 40L < 20L)
 				{
 					player.hideBossBar(bossBar);
 					cancel();
