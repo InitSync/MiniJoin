@@ -1,2 +1,2 @@
 
-rootProject.name = "MiniJoin"
+rootProject.name = "PaperBoard"

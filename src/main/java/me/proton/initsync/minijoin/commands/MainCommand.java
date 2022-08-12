@@ -87,7 +87,7 @@ public class MainCommand implements CommandExecutor
 								Configuration.getString(
 									 Paths.MESSAGE_NO_PERM
 								),
-								Placeholder.parsed("prefix", this.prefix)
+							  Placeholder.parsed("prefix", this.prefix)
 						 ));
 					return false;
 				}
@@ -107,6 +107,7 @@ public class MainCommand implements CommandExecutor
 							 ));
 						return true;
 					}
+					
 					sender.sendMessage(MiniMessage.miniMessage()
 						 .deserialize(
 								Configuration.getString(
@@ -115,16 +116,6 @@ public class MainCommand implements CommandExecutor
 							  Placeholder.parsed("prefix", this.prefix)
 						 ));
 					return false;
-				}
-				default ->
-				{
-					sender.sendMessage(MiniMessage.miniMessage()
-						 .deserialize(
-								Configuration.getString(
-									 Paths.MESSAGE_NO_COMMAND
-								),
-								Placeholder.parsed("prefix", this.prefix)
-						 ));
 				}
 			}
 			
@@ -153,7 +144,8 @@ public class MainCommand implements CommandExecutor
 		
 		switch (args[0])
 		{
-			case "help" -> {
+			case "help" ->
+			{
 				if (player.hasPermission(Permission.HELP_CMD.getPerm()))
 				{
 					helpMessage(player);
@@ -167,21 +159,21 @@ public class MainCommand implements CommandExecutor
 						 .sound(player, "[sound] " + permSound + ";1;1");
 				}
 				
-				player.sendMessage(MiniMessage.miniMessage()
-					 .deserialize(
-							Configuration.getString(
-								 Paths.MESSAGE_NO_PERM
-							),
-							Placeholder.parsed("prefix", this.prefix)
-					 ));
+				player.sendMessage(Utils.miniMessage(player,
+					 Configuration.getString(
+							Paths.MESSAGE_NO_PERM
+					 )
+				));
 				return false;
 			}
-			case "config" -> {
+			case "config" ->
+			{
 				if (player.hasPermission(Permission.CONFIG_CMD.getPerm()))
 				{
 					this.plugin
 						 .configManager()
 						 .reload("config.yml");
+					
 					if (Configuration.check(Paths.SOUNDS_ALLOW))
 					{
 						this.plugin
@@ -189,13 +181,11 @@ public class MainCommand implements CommandExecutor
 							 .sound(player, "[sound] " + reloadSound + ";1;1");
 					}
 					
-					player.sendMessage(MiniMessage.miniMessage()
-						 .deserialize(
-							  Configuration.getString(
-									 Paths.MESSAGE_CONFIG
-							  ),
-							  Placeholder.parsed("prefix", this.prefix)
-						 ));
+					player.sendMessage(Utils.miniMessage(player,
+						 Configuration.getString(
+								Paths.MESSAGE_CONFIG
+						 )
+					));
 					return true;
 				}
 				
@@ -206,37 +196,28 @@ public class MainCommand implements CommandExecutor
 						 .sound(player, "[sound] " + permSound + ";1;1");
 				}
 				
-				player.sendMessage(MiniMessage.miniMessage()
-					 .deserialize(
-							Configuration.getString(
-								 Paths.MESSAGE_NO_PERM
-							),
-							Placeholder.parsed("prefix", this.prefix)
-					 ));
+				player.sendMessage(Utils.miniMessage(player,
+					 Configuration.getString(
+							Paths.MESSAGE_NO_PERM
+					 )
+				));
 				return false;
-			}
-			default ->
-			{
-				player.sendMessage(MiniMessage.miniMessage()
-					 .deserialize(
-							Configuration.getString(
-								 Paths.MESSAGE_NO_COMMAND
-							),
-							Placeholder.parsed("prefix", this.prefix)
-					 ));
 			}
 		}
 		
-		player.sendMessage(MiniMessage.miniMessage()
-			 .deserialize(
-					Configuration.getString(
-						 Paths.MESSAGE_NO_COMMAND
-					),
-					Placeholder.parsed("prefix", this.prefix)
-			 ));
+		player.sendMessage(Utils.miniMessage(player,
+			 Configuration.getString(
+					Paths.MESSAGE_NO_COMMAND
+			 )
+		));
 		return false;
 	}
 	
+	/**
+	 * Sends the Plugin Help Message to sender.
+	 *
+	 * @param sender -> sender of command.
+	 */
 	private void helpMessage(@NotNull CommandSender sender)
 	{
 		Objects.requireNonNull(sender, "Sender is null.");

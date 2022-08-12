@@ -33,10 +33,13 @@ public class Log
 	
 	/**
 	 * Send a log of warning level.
+	 * <p>
+	 * NOTE: Method Unused.
 	 *
 	 * @param plugin -> JavaPlugin instance required.
 	 * @param strings -> log or logs to send.
 	 */
+	@SuppressWarnings("unused")
 	public static void warn(@NotNull JavaPlugin plugin, @NotNull String... strings) {
 		Objects.requireNonNull(plugin, "Plugin instance is null.");
 		Validate.notEmpty(strings, "Strings is null or has empty.");

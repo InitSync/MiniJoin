@@ -2,13 +2,20 @@ package me.proton.initsync.minijoin;
 
 import me.proton.initsync.minijoin.commands.MainCommand;
 import me.proton.initsync.minijoin.commands.TabComplete;
+import me.proton.initsync.minijoin.listeners.PlayerJoinListener;
+import me.proton.initsync.minijoin.listeners.PlayerQuitListener;
 import me.proton.initsync.minijoin.managers.ConfigManager;
 import me.proton.initsync.minijoin.utils.Log;
 import me.proton.initsync.minijoin.utils.actions.ActionHandler;
 import net.luckperms.api.LuckPerms;
+import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public final class MiniJoin extends JavaPlugin
 {
@@ -82,15 +89,33 @@ public final class MiniJoin extends JavaPlugin
 		this.actionHandler = new ActionHandler(this);
 		
 		final PluginCommand command = this.getCommand("minijoin");
+		assert command != null;
 		command.setExecutor(new MainCommand(this));
 		command.setTabCompleter(new TabComplete());
 		
+		registerListeners(
+			 new PlayerJoinListener(this),
+			 new PlayerQuitListener(this)
+		);
+		
 		Log.info(this,
 			 "Loaded ActionHandler as successful.",
-			 "Loaded plugin as successful, running at <dark_gray>(<aqua>" + this.getServer().getMinecraftVersion() +
+			 "Loaded plugin as successful, running at <dark_gray>(<aqua>" + Bukkit.getMinecraftVersion() +
 			 "<dark_gray>)",
 			 "<white>Developed by <green>" + this.author + " <dark_gray>| <aqua>v" + this.version
 		);
+	}
+	
+	private void registerListeners(@NotNull Listener... listeners)
+	{
+		Objects.requireNonNull(listeners, "Listeners to register is null.");
+		
+		for (Listener listener : listeners)
+		{
+			this.getServer()
+				 .getPluginManager()
+				 .registerEvents(listener, this);
+		}
 	}
 	
 	@Override
