@@ -1,0 +1,24 @@
+name: MiniJoin
+main: me.proton.initsync.minijoin.MiniJoin
+version: 1.0.0
+api-version: 1.13
+authors:
+  - InitSync
+depend:
+  - LuckPerms
+softdepend:
+  - PlaceholderAPI
+description: Simple Join/Quit plugin with MiniMessage support.
+permissions:
+  minijoin.*:
+    children:
+      minijoin.command.*: true
+  minijoin.command.*:
+    children:
+      minijoin.command.help: true
+      minijoin.command.config: true
+commands:
+  minijoin:
+    aliases:
+      - mj
+    description: -> Command to manage MiniJoin.

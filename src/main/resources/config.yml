@@ -1,0 +1,60 @@
+# ~ MiniJoin ~
+# • Developed by InitSync | v1.0.0
+# • MiniMessage Support!
+# ~~~~~~~~~~
+# Documentation:
+#   MiniMessage: https://docs.adventure.kyori.net/minimessage/format.html
+#   MiniMessage Viewer: https://webui.adventure.kyori.net
+#   MiniJoin Actions: https://github.com/InitSync/MiniJoin
+# ~~~~~~~~~~
+config:
+  # Plugin Prefix.
+  prefix: "<gradient:blue:dark_aqua>MiniJoin</gradient> <dark_gray><b>></b>"
+
+  sounds:
+    # Allow replay sounds?
+    allow: true
+
+    # Sounds ID´s.
+    no-perm: ENTITY_ITEM_BREAK
+    reload: UI_BUTTON_CLICK
+
+  join-quit:
+    # Allow use Join and Quit formats?
+    # Else will be use the default format for servers.
+    allow: true
+
+    # Groups.
+    groups:
+      default:
+        # Allow this group?
+        allow: true
+
+        # Group Join Message.
+        join: "<gray><hover:show_text:'<newline><gray>IGN: <yellow>%player_name%<newline><gray>Rank: %vault_prefix%<newline><gray>Level: <yellow>%player_level%<newline><gold>Click to send a message!<newline>'><click:suggest_command:'/msg %player_name%'>%player_name%</click></gray> <dark_gray><b>></b> <gray>Has joined to server!"
+
+        # Group Join Actions.
+        join-actions:
+          - "[sound] ENTITY_EXPERIENCE_ORB_PICKUP;1;1"
+          - "[bossbar] <gradient:blue:aqua>Hello World!;0.5;PINK;PROGRESS;100"
+
+        # Group Quit Message.
+        quit: "<gray>%player_name% <dark_gray><b>></b> <gray>If has left the server!"
+      admin:
+        allow: true
+        join: "%vault_prefix% <white><hover:show_text:'<newline><gray>IGN: <yellow>%player_name%<newline><gray>Rank: %vault_prefix%\n<gray>Level: <yellow>%player_level%\n<gold>Click to send a message!<newline>'><click:suggest_command:'/msg %player_name%'>%player_name%</click></white> <dark_gray><b>></b> <yellow>Has joined to server!"
+        join-actions:
+          - "[sound] ENTITY_EXPERIENCE_ORB_PICKUP;1;1"
+          - "[bossbar] <gradient:blue:aqua>Hello World!;0.5;PINK;PROGRESS;100"
+        quit: "%vault_prefix% <white>%player_name% <dark_gray><b>></b> <yellow>If has left the server!"
+
+messages:
+  no-perm: "<prefix> <gradient:red:dark_red>You don't have permission for that!"
+  no-command: "<prefix> <gradient:red:dark_red>You don't have permission for that!"
+
+  help:
+    - "<gradient:blue:dark_aqua>MiniJoin</gradient> <dark_gray><b>|</b> <white>Available Commands:"
+    - "<gray> - <gold><hover:show_text:'<white>Shows the help<newline><white>plugin message.<newline><yellow>Click to run the command!'><click:run_command:'/mj help'>/minijoin help</click></gold> <white>Shows this message."
+    - "<gray> - <gold><hover:show_text:'<white>Reloads the plugin<newline><white>configuration file.<newline><yellow>Click to run the command!'><click:run_command:'/mj config'>/minijoin config</click></gold> <white>Reload the configuration."
+
+  config: "<prefix> <gradient:green:blue>The plugin configuration has been reloaded successful!"
