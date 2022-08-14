@@ -62,7 +62,7 @@ messages:
 
   help:
     - "<gradient:blue:dark_aqua>MiniJoin</gradient> <dark_gray><b>|</b> <white>Available Commands:"
-    - "<gray> - <gold><hover:show_text:'<white>Shows the help<newline><white>plugin message.<newline><yellow>Click to run the command!'><click:run_command:'/mj help'>/minijoin help</click></gold> <white>Shows this message."
-    - "<gray> - <gold><hover:show_text:'<white>Reloads the plugin<newline><white>configuration file.<newline><yellow>Click to run the command!'><click:run_command:'/mj config'>/minijoin config</click></gold> <white>Reload the configuration."
+    - "<gray> - <gold><hover:show_text:'<white>Shows the help<newline><white>plugin message.<newline><newline><yellow>Click to run the command!'><click:run_command:'/mj help'>/minijoin help</click></gold> <white>Shows this message."
+    - "<gray> - <gold><hover:show_text:'<white>Reloads the plugin<newline><white>configuration file.<newline><newline><yellow>Click to run the command!'><click:run_command:'/mj config'>/minijoin config</click></gold> <white>Reload the configuration."
 
   config: "<prefix> <gradient:green:blue>The plugin configuration has been reloaded successful!"
