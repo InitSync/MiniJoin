@@ -22,22 +22,19 @@ public enum Paths
 	
 	MESSAGE_CONFIG ("messages.config");
 	
+	// Declaring a variable that is final, meaning it cannot be changed.
 	final String pathString;
 	
-	/**
-	 * Class Constructor.
-	 *
-	 * @param pathString -> path string.
-	 */
+	// A constructor that is setting the pathString variable to the pathString parameter.
 	Paths(@NotNull String pathString)
 	{
 		this.pathString = Objects.requireNonNull(pathString, "Path inserted is null.");
 	}
 	
 	/**
-	 * Returns the path string.
+	 * `pathString()` returns the path string of the current directory
 	 *
-	 * @return -> string of path.
+	 * @return The pathString variable is being returned.
 	 */
 	public String pathString()
 	{

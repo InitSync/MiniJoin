@@ -8,57 +8,62 @@ import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
 import java.util.List;
 
 public class TabComplete implements TabCompleter
 {
 	private final List<String> list;
+	private final List<String> result;
 	
-	/* Class Constructor. */
+	// Creating a new list.
 	public TabComplete()
 	{
 		this.list = Lists.newArrayList();
+		this.result = Lists.newArrayList();
 	}
 	
 	/**
-	 * Provides an argument completer for the commands.
+	 * If the player has permission to use the command, add it to the list of possible tab completions
 	 *
-	 * @param sender -> Source of the command. For players tab-completing a
-	 *     command inside of a command block, this will be the player, not
-	 *     the command block.
-	 * @param command -> Command which was executed
-	 * @param label -> Alias of the command which was used
-	 * @param args -> The arguments passed to the command, including final partial argument to be
-	 *              completed.
-	 *
-	 * @return -> a value or null.
+	 * @param sender The CommandSender who executed the command.
+	 * @param command The command that was executed.
+	 * @param label The command label.
+	 * @param args The arguments that were passed to the command.
+	 * @return A list of strings.
 	 */
 	@Override
-	public @Nullable List<String> onTabComplete(
+	@Nullable
+	public List<String> onTabComplete(
 		 @NotNull CommandSender sender,
 		 @NotNull Command command,
 		 @NotNull String label,
 		 @NotNull String[] args
 	)
 	{
-		if (args.length == 0)
+		if (this.list.isEmpty())
 		{
-			if (sender.hasPermission(Permission.HELP_CMD.getPerm()))
-			{
-				this.list.add("help");
-				return this.list;
-			}
-			
-			if (sender.hasPermission(Permission.CONFIG_CMD.getPerm()))
-			{
-				this.list.add("config");
-				return this.list;
-			}
-			
-			return Collections.emptyList();
+			this.list.add("help");
+			this.list.add("config");
 		}
 		
+		if (args.length == 0)
+		{
+			if (sender.hasPermission(Permission.HELP_CMD.getPerm()) ||
+				 sender.hasPermission(Permission.CONFIG_CMD.getPerm()))
+			{
+				for (String a : list)
+				{
+					if (a.toLowerCase()
+						 .startsWith(args[0].toLowerCase()))
+					{
+						this.result.add(a);
+					}
+					return this.result;
+				}
+				return null;
+			}
+			return null;
+		}
 		return null;
 	}
 }

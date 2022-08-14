@@ -24,6 +24,19 @@ config:
     # Else will be use the default format for servers.
     allow: true
 
+    # Allow send the motd to join?
+    allow-motd: true
+
+    # Welcome User Message.
+    motd:
+      - "<gradient:aqua:white>               ServerName Network</gradient>"
+      - "<green>             Welcome to the Server!"
+      - ""
+      - "<white>Remember invite to your <yellow>Friends and Enjoy!"
+      - ""
+      - "<gradient:yellow:gold>            Social Networks</gradient> <gray>(Do Click)"
+      - "<gradient:green:blue><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'store.com/yourserver'>               Store • </click><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'yourserver.com'>Web • </click><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'twitter.com/@Yourserver'>Twitter • </click><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'discord.io/yourserver'>Discord</click></gradient>"
+
     # Groups.
     groups:
       default:
@@ -45,7 +58,7 @@ config:
 
 messages:
   no-perm: "<prefix> <gradient:red:dark_red>You don't have permission for that!"
-  no-command: "<prefix> <gradient:red:dark_red>You don't have permission for that!"
+  no-command: "<prefix> <gradient:red:dark_red>That command has not been added!"
 
   help:
     - "<gradient:blue:dark_aqua>MiniJoin</gradient> <dark_gray><b>|</b> <white>Available Commands:"

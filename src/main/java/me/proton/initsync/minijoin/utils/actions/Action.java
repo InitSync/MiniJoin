@@ -5,52 +5,52 @@ import org.jetbrains.annotations.NotNull;
 
 public interface Action
 {
+	
 	/**
-	 * Sound action method.
+	 * Plays a sound to a player.
 	 *
-	 * @param player -> player for the sound.
-	 * @param string -> action container.
+	 * @param player The player to play the sound to.
+	 * @param string The sound to play.
 	 */
 	void sound(@NotNull Player player, @NotNull String string);
 	
 	/**
-	 * Effect action method.
+	 * This function takes a player and a string, and does something with them.
 	 *
-	 * @param player -> player for the effect.
-	 * @param string -> action container.
+	 * @param player The player who is being affected by the effect.
+	 * @param string The string that the player will see in chat.
 	 */
 	void effect(@NotNull Player player, @NotNull String string);
 	
 	/**
-	 * Title action method.
+	 * `Sets the title of the player's screen.`
 	 *
-	 * @param player -> player for the title.
-	 * @param string -> action container.
+	 * @param player The player to send the title to.
+	 * @param string The title to be displayed
 	 */
 	void title(@NotNull Player player, @NotNull String string);
 	
 	/**
-	 * ActionBar action method.
+	 * Sends a message to the player's action bar.
 	 *
-	 * @param player -> player for the actionbar.
-	 * @param string -> action container.
+	 * @param player The player you want to send the actionbar to.
+	 * @param string The string you want to send to the player.
 	 */
 	void actionbar(@NotNull Player player, @NotNull String string);
 	
 	/**
-	 * Bossbar action method.
+	 * `bossbar` is a function that takes a player and a string and displays a bossbar to the player
 	 *
-	 * @param player -> player for the bossbar.
-	 * @param string -> action container.
+	 * @param player The player you want to send the bossbar to.
+	 * @param string The text to display on the bossbar
 	 */
 	void bossbar(@NotNull Player player, @NotNull String string);
 	
 	/**
-	 * Check if the string starts with some action identifier, example: [sound], if like this has,
-	 * will execute the action.
+	 * Execute the actions.
 	 *
-	 * @param player -> player for the actions.
-	 * @param string -> action container.
+	 * @param player The player you want to execute the actions.
+	 * @param string Action container.
 	 */
 	void execute(@NotNull Player player, @NotNull String string);
 }

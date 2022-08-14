@@ -19,19 +19,24 @@ import java.util.Objects;
 
 public final class MiniJoin extends JavaPlugin
 {
+	// It's getting the author of the plugin from the plugin.yml file.
 	public final String author = String.join("",
 		 this.getDescription().getAuthors()
 	);
+	// It's getting the version of the plugin from the plugin.yml file.
 	public final String version = this.getDescription().getVersion();
 	
+	// It's creating a new variable called `actionHandler` and it's private.
 	private ActionHandler actionHandler;
+	// It's creating a new variable called `luckPerms` and it's private.
 	private LuckPerms luckPerms;
+	// It's creating a new variable called `configManager` and it's private.
 	private ConfigManager configManager;
 	
 	/**
-	 * Returns the LuckPerms instance, will throw a IllegalStateException if the instance is null.
+	 * If the plugin is disabled, throw an exception. Otherwise, return the plugin.
 	 *
-	 * @return -> this.luckPerms
+	 * @return LuckPerms
 	 */
 	public LuckPerms luckPerms()
 	{
@@ -43,9 +48,9 @@ public final class MiniJoin extends JavaPlugin
 	}
 	
 	/**
-	 * Returns the ConfigManager instance, will throw a IllegalStateException if the instance is null.
+	 * If the configManager is null, throw an exception. Otherwise, return the configManager
 	 *
-	 * @return -> this.configManager
+	 * @return The configManager object.
 	 */
 	public ConfigManager configManager()
 	{
@@ -57,9 +62,9 @@ public final class MiniJoin extends JavaPlugin
 	}
 	
 	/**
-	 * Returns the ActionHandler instance, will throw a IllegalStateException if the instance is null.
+	 * If the action handler is null, throw an exception. Otherwise, return the action handler
 	 *
-	 * @return -> this.actionHandler
+	 * @return The actionHandler
 	 */
 	public ActionHandler actionHandler()
 	{
@@ -88,6 +93,8 @@ public final class MiniJoin extends JavaPlugin
 		this.configManager = new ConfigManager(this, "config.yml");
 		this.actionHandler = new ActionHandler(this);
 		
+		Log.info(this, "Loaded ActionHandler as successful.");
+		
 		final PluginCommand command = this.getCommand("minijoin");
 		assert command != null;
 		command.setExecutor(new MainCommand(this));
@@ -99,13 +106,15 @@ public final class MiniJoin extends JavaPlugin
 		);
 		
 		Log.info(this,
-			 "Loaded ActionHandler as successful.",
 			 "Loaded plugin as successful, running at <dark_gray>(<aqua>" + Bukkit.getMinecraftVersion() +
 			 "<dark_gray>)",
 			 "<white>Developed by <green>" + this.author + " <dark_gray>| <aqua>v" + this.version
 		);
 	}
 	
+	/**
+	 * It registers a list of listeners to the plugin
+	 */
 	private void registerListeners(@NotNull Listener... listeners)
 	{
 		Objects.requireNonNull(listeners, "Listeners to register is null.");

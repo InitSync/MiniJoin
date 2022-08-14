@@ -6,32 +6,31 @@ import org.jetbrains.annotations.NotNull;
 public interface Configuration
 {
 	/**
-	 * Create if not exists, or load the file specified.
+	 * Loads the file with the given name.
 	 *
-	 * @param fileName -> name of file.
+	 * @param fileName The name of the file to load.
 	 */
 	void load(@NotNull String fileName);
 	
 	/**
-	 * Reload the file specified.
+	 * Reloads the specified file
 	 *
-	 * @param fileName -> name of file.
+	 * @param fileName The name of the file to reload.
 	 */
 	void reload(@NotNull String fileName);
 	
 	/**
-	 * Save the file specified.
+	 * Saves the file with the given name.
 	 *
-	 * @param fileName -> save of file.
+	 * @param fileName The name of the file to save the data to.
 	 */
 	void save(@NotNull String fileName);
 	
 	/**
-	 * Returns the file specified, if the map not contains it (not exist), will return null.
+	 * Gets the FileConfiguration for the given file name.
 	 *
-	 * @param fileName -> name of file.
-	 *
-	 * @return -> a FileConfiguration or null.
+	 * @param fileName The name of the file to load.
+	 * @return A FileConfiguration object.
 	 */
 	FileConfiguration get(@NotNull String fileName);
 }

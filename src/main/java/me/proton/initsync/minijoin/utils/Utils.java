@@ -22,17 +22,18 @@ import java.util.Objects;
 
 public class Utils
 {
+	// It's getting the JavaPlugin instance from the MiniJoin class.
 	private static final MiniJoin PLUGIN = JavaPlugin.getPlugin(MiniJoin.class);
+	// It's getting the prefix from the configuration file.
 	private static final String PREFIX = Configuration.getString(Paths.PREFIX);
 	
 	/**
-	 * Parse the text to Component using the MiniMessage API for the colors, gradient, hovers
-	 * and more.
+	 * It takes a player and a string, and returns a component that has the string parsed with the
+	 * player's name, rank, prefix, level, exp, world, ping, and kills
 	 *
-	 * @param player -> player for the placeholders.
-	 * @param text -> text to parse to Component.
-	 *
-	 * @return -> a Component.
+	 * @param player The player to use for the placeholders.
+	 * @param text The text to be parsed.
+	 * @return A Component object.
 	 */
 	public static Component miniMessage(@NotNull Player player, @NotNull String text)
 	{
@@ -68,12 +69,12 @@ public class Utils
 	/**
 	 * Send a title.
 	 *
-	 * @param player -> player to send the title.
-	 * @param fadeIn -> first time title parameter.
-	 * @param stay -> second time title parameter.
-	 * @param fadeOut -> third time title parameter.
-	 * @param title -> title message to parse to component.
-	 * @param subtitle -> subtitle message to parse to component.
+	 * @param player The player to send the title to.
+	 * @param fadeIn The time it takes for the title to fade in.
+	 * @param stay The amount of time the title will stay on the screen.
+	 * @param fadeOut The time it takes for the title to fade out.
+	 * @param title The title to display.
+	 * @param subtitle The subtitle to display.
 	 */
 	public static void title(
 		 @NotNull Player player,
@@ -101,12 +102,12 @@ public class Utils
 	}
 	
 	/**
-	 * Send an actionbar.
+	 * It sends an action bar message to a player for a certain duration
 	 *
-	 * @param plugin -> JavaPlugin instance required for the task.
-	 * @param player -> player to send the actionbar.
-	 * @param message -> message to parse to Component using MiniMessage API.
-	 * @param duration -> duration for the actionbar runnable task.
+	 * @param plugin The plugin that is running the action bar.
+	 * @param player The player to send the action bar to.
+	 * @param message The message you want to send to the player.
+	 * @param duration The duration of the action bar in milliseconds.
 	 */
 	public static void actionBar(
 		 @NotNull JavaPlugin plugin,
@@ -135,15 +136,16 @@ public class Utils
 	}
 	
 	/**
-	 * Create and show a BossBar to player.
+	 * It displays a boss bar with a message that is formatted with the MiniMessage API, and it disappears
+	 * after a certain amount of time
 	 *
-	 * @param plugin -> JavaPlugin instance required for the task.
-	 * @param player -> player to send the BossBar.
-	 * @param message -> message to parse to Component using MiniMessage.
-	 * @param color -> bossbar color enum.
-	 * @param overlay -> bossbar overlay enum.
-	 * @param progress -> bossbar progress amount float.
-	 * @param duration -> bossbar update task duration.
+	 * @param plugin The plugin that is running the boss bar.
+	 * @param player The player to send the boss bar to.
+	 * @param message The message to be displayed.
+	 * @param color The color of the boss bar.
+	 * @param overlay The overlay of the boss bar.
+	 * @param progress The progress of the boss bar.
+	 * @param duration The duration of the boss bar in milliseconds.
 	 */
 	public static void bossBar(
 		 @NotNull JavaPlugin plugin,
@@ -190,10 +192,9 @@ public class Utils
 	}
 	
 	/**
-	 * Send a message to the audience, also can send multiple messages.
+	 * > This function sends a message to the audience
 	 *
-	 * @param audience -> audience to send the messages.
-	 * @param messages -> message or messages for send.
+	 * @param audience The audience to send the message to.
 	 */
 	public static void message(@NotNull Audience audience, @NotNull String... messages)
 	{

@@ -9,22 +9,19 @@ public enum Permission
 	HELP_CMD ("command.help"),
 	CONFIG_CMD ("command.config");
 	
+	// It's a variable, it's used to store a value.
 	final String perm;
 	
-	/**
-	 * Class Constructor.
-	 *
-	 * @param perm -> permission string.
-	 */
+	// It's a constructor, it's used to create a new object of the class.
 	Permission(@NotNull String perm)
 	{
 		this.perm = Objects.requireNonNull(perm, "Permission inserted is null.");
 	}
 	
 	/**
-	 * Return the permission specified, example: Permission.CONFIG_CMD.getPerm()
+	 * It returns the permission node for the command
 	 *
-	 * @return -> permission specified.
+	 * @return The permission node for the command.
 	 */
 	public String getPerm()
 	{

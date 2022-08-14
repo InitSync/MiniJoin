@@ -1,45 +1,27 @@
 package me.proton.initsync.minijoin.api;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 public class UserEntryEvent extends Event
 {
+	// It's a list of handlers that will be called when the event is called.
 	private final HandlerList handlers;
-	private final Player user;
-	
+	// It's a variable that will be used to store the join message.
 	private String joinMessage;
 	
-	/**
-	 * Class Constructor.
-	 *
-	 * @param user -> player that join to server.
-	 */
-	public UserEntryEvent(@NotNull Player user)
+	// It's a constructor of the class.
+	public UserEntryEvent()
 	{
 		this.handlers = new HandlerList();
-		this.user = Objects.requireNonNull(user, "User at the constructor is null.");
 	}
 	
 	/**
-	 * Returns the user than join to server.
+	 * It returns the join message
 	 *
-	 * @return -> a Player.
-	 */
-	public Player user()
-	{
-		return this.user;
-	}
-	
-	/**
-	 * Returns the join message of user.
-	 *
-	 * @return -> a String.
+	 * @return The joinMessage variable.
 	 */
 	public String joinMessage()
 	{
@@ -47,9 +29,9 @@ public class UserEntryEvent extends Event
 	}
 	
 	/**
-	 * Set or modify the join message.
+	 * It sets the join message
 	 *
-	 * @param joinMessage -> join message to set.
+	 * @param joinMessage The message to send to the player when they join.
 	 */
 	public void joinMessage(@NotNull String joinMessage)
 	{
@@ -59,9 +41,9 @@ public class UserEntryEvent extends Event
 	}
 	
 	/**
-	 * Returns the handlers list.
+	 * Returns a list of event handlers, every event handler is a method that handles a certain event.
 	 *
-	 * @return -> a HandlerList.
+	 * @return The HandlerList for this event.
 	 */
 	@Override
 	@NotNull

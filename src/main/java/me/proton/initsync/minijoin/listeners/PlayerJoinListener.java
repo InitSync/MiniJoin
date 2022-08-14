@@ -17,21 +17,27 @@ import java.util.Objects;
 
 public class PlayerJoinListener implements Listener
 {
+	// A reference to the main class.
 	private final MiniJoin plugin;
 	
+	// A reference to the `UserEntryEvent` class.
 	private UserEntryEvent userEntryEvent;
+	// It's a list of actions that will be executed when the player joins.
 	private List<String> actions;
 	
-	/**
-	 * Class Constructor.
-	 *
-	 * @param plugin -> JavaPlugin instance required.
-	 */
+	// It's a constructor that is used to initialize the `plugin` variable.
 	public PlayerJoinListener(@NotNull MiniJoin plugin)
 	{
 		this.plugin = Objects.requireNonNull(plugin, "Plugin is null at the constructor.");
 	}
 	
+	/**
+	 * It checks if the join-quit feature is enabled, then it gets the user's primary group, then it gets
+	 * the join message from the configuration, then it sets the join message, then it executes the join
+	 * actions
+	 *
+	 * @param event The event that is being called.
+	 */
 	@EventHandler (priority = EventPriority.HIGH)
 	public void onJoin(PlayerJoinEvent event)
 	{
@@ -39,7 +45,7 @@ public class PlayerJoinListener implements Listener
 		
 		if (Configuration.check(Paths.JOIN_QUIT_ALLOW))
 		{
-			this.userEntryEvent = new UserEntryEvent(player);
+			this.userEntryEvent = new UserEntryEvent();
 			
 			final String userGroup = this.plugin
 				 .luckPerms()

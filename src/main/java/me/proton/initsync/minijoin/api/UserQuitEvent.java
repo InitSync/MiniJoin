@@ -1,45 +1,27 @@
 package me.proton.initsync.minijoin.api;
 
 import org.apache.commons.lang.Validate;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 public class UserQuitEvent extends Event
 {
+	// It's a variable that will be used to store the quit message.
 	private final HandlerList handlers;
-	private final Player user;
-	
+	// It's a variable that will be used to store the quit message.
 	private String quitMessage;
 	
-	/**
-	 * Class Constructor.
-	 *
-	 * @param user -> player that leave the server.
-	 */
-	public UserQuitEvent(@NotNull Player user)
+	// It's a constructor that will be used to create a new instance of the class.
+	public UserQuitEvent()
 	{
 		this.handlers = new HandlerList();
-		this.user = Objects.requireNonNull(user, "User at the constructor is null.");
 	}
 	
 	/**
-	 * Returns the user than leave the server.
+	 * This function returns the quit message.
 	 *
-	 * @return -> a Player.
-	 */
-	public Player user()
-	{
-		return this.user;
-	}
-	
-	/**
-	 * Returns the quit message of user.
-	 *
-	 * @return -> a String.
+	 * @return The quitMessage variable is being returned.
 	 */
 	public String quitMessage()
 	{
@@ -47,9 +29,9 @@ public class UserQuitEvent extends Event
 	}
 	
 	/**
-	 * Set or modify the quit message.
+	 * Sets the quit message to the given quit message.
 	 *
-	 * @param quitMessage -> quit message to set.
+	 * @param quitMessage The message to send to the player when they quit.
 	 */
 	public void quitMessage(@NotNull String quitMessage)
 	{
@@ -59,9 +41,9 @@ public class UserQuitEvent extends Event
 	}
 	
 	/**
-	 * Returns the handlers list.
+	 * Returns a list of event handlers, used to register the event.
 	 *
-	 * @return -> a HandlerList.
+	 * @return The HandlerList for this event.
 	 */
 	@Override
 	@NotNull

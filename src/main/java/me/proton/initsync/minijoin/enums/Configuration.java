@@ -10,14 +10,14 @@ import java.util.Objects;
 
 public class Configuration
 {
+	// It's just a reference to the plugin instance.
 	private static final MiniJoin PLUGIN = JavaPlugin.getPlugin(MiniJoin.class);
 	
 	/**
-	 * Returns a string from the config.
+	 * It gets a string from the config.yml file
 	 *
-	 * @param path -> path enum.
-	 *
-	 * @return -> a string value.
+	 * @param path The path to the value you want to get.
+	 * @return A string.
 	 */
 	public static String getString(@NotNull Paths path)
 	{
@@ -29,13 +29,10 @@ public class Configuration
 	}
 	
 	/**
-	 * Returns an int value from the config.
-	 * <p>
-	 * NOTE: Unused Method.
+	 * It gets an integer from the config.yml file
 	 *
-	 * @param path -> path enum.
-	 *
-	 * @return -> a int value.
+	 * @param path The path to the value you want to get.
+	 * @return An integer.
 	 */
 	@SuppressWarnings ("unused")
 	public static int getInt(@NotNull Paths path)
@@ -48,11 +45,10 @@ public class Configuration
 	}
 	
 	/**
-	 * Returns a string list.
+	 * It gets a list of strings from the config.yml file
 	 *
-	 * @param path -> path enum.
-	 *
-	 * @return -> a List<String>.
+	 * @param path The path to the list in the config.yml file.
+	 * @return A list of strings.
 	 */
 	public static List<String> getList(@NotNull Paths path)
 	{
@@ -64,12 +60,12 @@ public class Configuration
 	}
 	
 	/**
-	 * Returns a ConfigurationSection from the enum.
+	 * It returns a ConfigurationSection from the config.yml file
 	 *
-	 * @param path -> path enum.
-	 *
-	 * @return -> a ConfigurationSection.
+	 * @param path The path to the section.
+	 * @return A ConfigurationSection object.
 	 */
+	@SuppressWarnings ("unused")
 	public static ConfigurationSection getSection(@NotNull Paths path)
 	{
 		Objects.requireNonNull(path, "Path inserted is null at the method.");
@@ -80,11 +76,10 @@ public class Configuration
 	}
 	
 	/**
-	 * Returns a boolean value from the enum specified.
+	 * It checks if the path is not null, and if it is not, it returns the boolean value of the path
 	 *
-	 * @param path -> path enum.
-	 *
-	 * @return -> boolean value. True or false.
+	 * @param path The path to the boolean in the config.yml file.
+	 * @return A boolean value.
 	 */
 	public static boolean check(@NotNull Paths path)
 	{

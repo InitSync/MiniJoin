@@ -20,16 +20,18 @@ import java.util.Objects;
 
 public class MainCommand implements CommandExecutor
 {
+	// A reference to the plugin instance.
 	private final MiniJoin plugin;
+	// It's a variable that stores the prefix of the plugin.
 	private final String prefix;
+	// It's a variable that stores the sound that will be played when a player doesn't have permission to
+	// execute a command.
 	private final Sound permSound;
+	// It's a variable that stores the sound that will be played when a player executes the `/minijoin
+	// config` command.
 	private final Sound reloadSound;
 	
-	/**
-	 * Class Constructor.
-	 *
-	 * @param plugin -> JavaPlugin instance required.
-	 */
+	// It's the constructor of the class.
 	public MainCommand(@NotNull MiniJoin plugin)
 	{
 		this.plugin = Objects.requireNonNull(plugin, "Plugin at the constructor is null.");
@@ -43,14 +45,15 @@ public class MainCommand implements CommandExecutor
 	}
 	
 	/**
-	 * Call to this method when a command is executed.
+	 * If the sender is a player, then check if the player has the permission to run the command, if the
+	 * player has the permission, then run the command, if the player doesn't have the permission, then
+	 * send the player a message saying that they don't have the permission
 	 *
-	 * @param sender -> Source of the command
-	 * @param command -> Command which was executed
-	 * @param label -> Alias of the command which was used
-	 * @param args -> Passed command arguments
-	 *
-	 * @return -> a boolean value depending on execution result.
+	 * @param sender The CommandSender who executed the command.
+	 * @param command The command that was executed.
+	 * @param label The command label
+	 * @param args The arguments that the player has entered.
+	 * @return A boolean.
 	 */
 	@Override
 	public boolean onCommand(
@@ -65,9 +68,9 @@ public class MainCommand implements CommandExecutor
 			if (args.length == 0)
 			{
 				Utils.message(sender,
-					 this.prefix + "Running at <dark_gray>(<aqua>" + Bukkit.getMinecraftVersion() +
+					 this.prefix + " <white>Running at <dark_gray>(<aqua>" + Bukkit.getMinecraftVersion() +
 							"<dark_gray>)",
-					 this.prefix + "<white>Developed by <green>" + this.plugin.author + " <dark_gray>| "
+					 this.prefix + " <white>Developed by <green>" + this.plugin.author + " <dark_gray>| "
 							+ "<aqua>v" + this.plugin.version
 				);
 				return true;
@@ -214,9 +217,9 @@ public class MainCommand implements CommandExecutor
 	}
 	
 	/**
-	 * Sends the Plugin Help Message to sender.
+	 * It sends a list of messages to the sender
 	 *
-	 * @param sender -> sender of command.
+	 * @param sender The command sender.
 	 */
 	private void helpMessage(@NotNull CommandSender sender)
 	{

@@ -15,16 +15,14 @@ import java.util.Objects;
 
 public class ConfigManager implements Configuration
 {
+	// A reference to the main class of the plugin.
 	private final MiniJoin plugin;
+	// It's a map that contains the file name as a key and the file as a value.
 	private final Map<String, File> fileMap;
+	// It's a map that contains the file name as a key and the file as a value.
 	private final Map<String, FileConfiguration> configurationMap;
 	
-	/**
-	 * Class Constructor.
-	 *
-	 * @param plugin -> JavaPlugin instance required.
-	 * @param files -> file or files to create and load white the plugin startup.
-	 */
+	// It's a constructor that takes the plugin instance and the files to load.
 	public ConfigManager(@NotNull MiniJoin plugin, @NotNull String... files)
 	{
 		this.plugin = Objects.requireNonNull(plugin, "Plugin at the constructor is null.");
@@ -35,9 +33,9 @@ public class ConfigManager implements Configuration
 	}
 	
 	/**
-	 * Create if not exists, or load the file specified.
+	 * Loads the file with the given name.
 	 *
-	 * @param fileName -> name of file.
+	 * @param fileName The name of the file to load.
 	 */
 	@Override
 	public void load(@NotNull String fileName)
@@ -67,9 +65,9 @@ public class ConfigManager implements Configuration
 	}
 	
 	/**
-	 * Reload the file specified.
+	 * Reloads the specified file
 	 *
-	 * @param fileName -> name of file.
+	 * @param fileName The name of the file to reload.
 	 */
 	@Override
 	public void reload(@NotNull String fileName)
@@ -99,9 +97,9 @@ public class ConfigManager implements Configuration
 	}
 	
 	/**
-	 * Save the file specified.
+	 * Saves the file with the given name.
 	 *
-	 * @param fileName -> save of file.
+	 * @param fileName The name of the file to save the data to.
 	 */
 	@Override
 	public void save(@NotNull String fileName)
@@ -131,11 +129,10 @@ public class ConfigManager implements Configuration
 	}
 	
 	/**
-	 * Returns the file specified, if the map not contains it (not exist), will return null.
+	 * Gets the FileConfiguration for the given file name.
 	 *
-	 * @param fileName -> name of file.
-	 *
-	 * @return -> a FileConfiguration or null.
+	 * @param fileName The name of the file to load.
+	 * @return A FileConfiguration object.
 	 */
 	@Override
 	public FileConfiguration get(@NotNull String fileName)

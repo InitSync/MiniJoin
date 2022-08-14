@@ -10,10 +10,9 @@ import java.util.Objects;
 public class Log
 {
 	/**
-	 * Send a log of info level.
+	 * It sends a message to the console.
 	 *
-	 * @param plugin -> JavaPlugin instance required.
-	 * @param strings -> log or logs to send.
+	 * @param plugin The plugin instance.
 	 */
 	public static void info(@NotNull JavaPlugin plugin, @NotNull String... strings) {
 		Objects.requireNonNull(plugin, "Plugin instance is null.");
@@ -32,12 +31,9 @@ public class Log
 	}
 	
 	/**
-	 * Send a log of warning level.
-	 * <p>
-	 * NOTE: Method Unused.
+	 * It sends a warning message to the console
 	 *
-	 * @param plugin -> JavaPlugin instance required.
-	 * @param strings -> log or logs to send.
+	 * @param plugin The plugin instance.
 	 */
 	@SuppressWarnings("unused")
 	public static void warn(@NotNull JavaPlugin plugin, @NotNull String... strings) {
@@ -57,10 +53,9 @@ public class Log
 	}
 	
 	/**
-	 * Send a log of error level.
+	 * It sends a message to the console with the prefix "MiniJoin" and the tag "[ERROR]".
 	 *
-	 * @param plugin -> JavaPlugin instance required.
-	 * @param strings -> log or logs to send.
+	 * @param plugin The plugin instance.
 	 */
 	public static void error(@NotNull JavaPlugin plugin, @NotNull String... strings) {
 		Objects.requireNonNull(plugin, "Plugin instance is null.");

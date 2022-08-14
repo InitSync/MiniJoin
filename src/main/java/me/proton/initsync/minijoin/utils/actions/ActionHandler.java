@@ -16,23 +16,20 @@ import java.util.Objects;
 
 public class ActionHandler implements Action
 {
+	// It's a reference to the plugin instance.
 	private final MiniJoin plugin;
 	
-	/**
-	 * Class Constructor.
-	 *
-	 * @param plugin -> JavaPlugin instance required for the actions methods.
-	 */
+	// It's a constructor.
 	public ActionHandler(@NotNull MiniJoin plugin)
 	{
 		this.plugin = Objects.requireNonNull(plugin, "Plugin instance is null at the constructor.");
 	}
 	
 	/**
-	 * Sound action method.
+	 * Plays a sound to a player.
 	 *
-	 * @param player -> player for the sound.
-	 * @param string -> action container.
+	 * @param player The player to play the sound to.
+	 * @param string The sound to play.
 	 */
 	@Override
 	public void sound(@NotNull Player player, @NotNull String string)
@@ -40,8 +37,8 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		// [sound]
-		string = string.substring(8);
+		string = string.replace("[sound]", "");
+		string = string.trim();
 		
 		final String[] split = string.split(";", 3);
 		final Sound sound = Sound.valueOf(split[0]);
@@ -75,10 +72,10 @@ public class ActionHandler implements Action
 	}
 	
 	/**
-	 * Effect action method.
+	 * This function takes a player and a string, and does something with them.
 	 *
-	 * @param player -> player for the effect.
-	 * @param string -> action container.
+	 * @param player The player who is being affected by the effect.
+	 * @param string The string that the player will see in chat.
 	 */
 	@Override
 	public void effect(@NotNull Player player, @NotNull String string)
@@ -86,8 +83,8 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		// [effect]
-		string = string.substring(9);
+		string = string.replace("[effect]", "");
+		string = string.trim();
 		
 		final String[] split = string.split(";", 3);
 		final PotionEffectType effectType = PotionEffectType.getByName(split[0]);
@@ -135,10 +132,10 @@ public class ActionHandler implements Action
 	}
 	
 	/**
-	 * Title action method.
+	 * `Sets the title of the player's screen.`
 	 *
-	 * @param player -> player for the title.
-	 * @param string -> action container.
+	 * @param player The player to send the title to.
+	 * @param string The title to be displayed
 	 */
 	@Override
 	public void title(@NotNull Player player, @NotNull String string)
@@ -146,8 +143,8 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		// [title]
-		string = string.substring(8);
+		string = string.replace("[title]", "");
+		string = string.trim();
 		
 		final String[] split = string.split(";", 5);
 		final String title = split[0];
@@ -187,10 +184,10 @@ public class ActionHandler implements Action
 	}
 	
 	/**
-	 * ActionBar action method.
+	 * Sends a message to the player's action bar.
 	 *
-	 * @param player -> player for the actionbar.
-	 * @param string -> action container.
+	 * @param player The player you want to send the actionbar to.
+	 * @param string The string you want to send to the player.
 	 */
 	@Override
 	public void actionbar(@NotNull Player player, @NotNull String string)
@@ -198,8 +195,8 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		// [actionbar]
-		string = string.substring(12);
+		string = string.replace("[actionbar]", "");
+		string = string.trim();
 		
 		final String[] split = string.split(";", 2);
 		final String message = split[0];
@@ -214,10 +211,10 @@ public class ActionHandler implements Action
 	}
 	
 	/**
-	 * Bossbar action method.
+	 * `bossbar` is a function that takes a player and a string and displays a bossbar to the player
 	 *
-	 * @param player -> player for the bossbar.
-	 * @param string -> action container.
+	 * @param player The player you want to send the bossbar to.
+	 * @param string The text to display on the bossbar
 	 */
 	@Override
 	public void bossbar(@NotNull Player player, @NotNull String string)
@@ -225,8 +222,8 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		// [bossbar]
-		string  = string.substring(10);
+		string = string.replace("[bossbar]", "");
+		string = string.trim();
 
 		final String[] split = string.split(";", 5);
 		final String message = split[0];
@@ -247,11 +244,10 @@ public class ActionHandler implements Action
 	}
 	
 	/**
-	 * Check if the string starts with some action identifier, example: [sound], if like this has,
-	 * will execute the action.
+	 * Execute the actions.
 	 *
-	 * @param player -> player for the actions.
-	 * @param string -> action container.
+	 * @param player The player you want to execute the actions.
+	 * @param string Action container.
 	 */
 	@Override
 	public void execute(@NotNull Player player, @NotNull String string)
@@ -263,11 +259,6 @@ public class ActionHandler implements Action
 		
 		switch (string)
 		{
-			default ->
-			{
-				Log.error(this.plugin, "That action not exist or is invalid.");
-				return;
-			}
 			case "sound" ->
 			{
 				sound(player, string);

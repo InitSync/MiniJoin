@@ -16,20 +16,24 @@ import java.util.Objects;
 
 public class PlayerQuitListener implements Listener
 {
+	// A private variable that is used to store the plugin instance.
 	private final MiniJoin plugin;
 	
+	// Used to store the UserQuitEvent instance.
 	private UserQuitEvent userQuitEvent;
 	
-	/**
-	 * Class Constructor.
-	 *
-	 * @param plugin -> JavaPlugin instance required.
-	 */
+	// Checking if the plugin is null.
 	public PlayerQuitListener(@NotNull MiniJoin plugin)
 	{
 		this.plugin = Objects.requireNonNull(plugin, "Plugin is null at the constructor.");
 	}
 	
+	/**
+	 * It checks if the join-quit feature is enabled, if it is, it gets the user's group, and then it gets the
+	 * quit message from the configuration, and then it sets the quit message to the event
+	 *
+	 * @param event The event that is being called.
+	 */
 	@EventHandler (priority = EventPriority.HIGH)
 	public void onQuit(PlayerQuitEvent event)
 	{
@@ -37,7 +41,7 @@ public class PlayerQuitListener implements Listener
 		
 		if (Configuration.check(Paths.JOIN_QUIT_ALLOW))
 		{
-			this.userQuitEvent = new UserQuitEvent(player);
+			this.userQuitEvent = new UserQuitEvent();
 			
 			final String userGroup = this.plugin
 				 .luckPerms()
