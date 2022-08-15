@@ -39,14 +39,6 @@ public interface Action
 	void actionbar(@NotNull Player player, @NotNull String string);
 	
 	/**
-	 * `bossbar` is a function that takes a player and a string and displays a bossbar to the player
-	 *
-	 * @param player The player you want to send the bossbar to.
-	 * @param string The text to display on the bossbar
-	 */
-	void bossbar(@NotNull Player player, @NotNull String string);
-	
-	/**
 	 * Execute the actions.
 	 *
 	 * @param player The player you want to execute the actions.
