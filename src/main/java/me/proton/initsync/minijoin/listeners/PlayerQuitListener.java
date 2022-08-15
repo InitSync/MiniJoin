@@ -1,5 +1,6 @@
 package me.proton.initsync.minijoin.listeners;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.proton.initsync.minijoin.MiniJoin;
 import me.proton.initsync.minijoin.api.UserQuitEvent;
 import me.proton.initsync.minijoin.enums.Configuration;
@@ -19,9 +20,6 @@ public class PlayerQuitListener implements Listener
 	// A private variable that is used to store the plugin instance.
 	private final MiniJoin plugin;
 	
-	// Used to store the UserQuitEvent instance.
-	private UserQuitEvent userQuitEvent;
-	
 	// Checking if the plugin is null.
 	public PlayerQuitListener(@NotNull MiniJoin plugin)
 	{
@@ -34,14 +32,14 @@ public class PlayerQuitListener implements Listener
 	 *
 	 * @param event The event that is being called.
 	 */
-	@EventHandler (priority = EventPriority.HIGH)
+	@EventHandler (priority = EventPriority.LOW)
 	public void onQuit(PlayerQuitEvent event)
 	{
 		final Player player = event.getPlayer();
 		
 		if (Configuration.check(Paths.JOIN_QUIT_ALLOW))
 		{
-			this.userQuitEvent = new UserQuitEvent();
+			final UserQuitEvent userQuitEvent = new UserQuitEvent();
 			
 			final String userGroup = this.plugin
 				 .luckPerms()
@@ -63,9 +61,11 @@ public class PlayerQuitListener implements Listener
 					 .getString("config.join-quit.groups." + userGroup + ".quit");
 				assert quitMessage != null;
 				
-				this.userQuitEvent.quitMessage(quitMessage);
+				userQuitEvent.quitMessage(quitMessage);
 				event.quitMessage(Utils.miniMessage(player,
-					 this.userQuitEvent.quitMessage()
+					 PlaceholderAPI.setPlaceholders(player,
+						  userQuitEvent.quitMessage()
+					 )
 				));
 			}
 		}
