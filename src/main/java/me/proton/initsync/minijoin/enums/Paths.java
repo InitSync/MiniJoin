@@ -13,6 +13,8 @@ public enum Paths
 	SOUNDS_RELOAD ("config.sounds.reload"),
 	
 	JOIN_QUIT_ALLOW ("config.join-quit.allow"),
+	JOIN_QUIT_ALLOW_MOTD ("config.join-quit.allow-motd"),
+	JOIN_QUIT_MOTD ("config.join-quit.motd"),
 	JOIN_QUIT_GROUPS ("config.join-quit.groups"),
 	
 	MESSAGE_NO_PERM ("messages.no-perm"),
