@@ -16,7 +16,6 @@ public class Log
 	 */
 	public static void info(@NotNull JavaPlugin plugin, @NotNull String... strings) {
 		Objects.requireNonNull(plugin, "Plugin instance is null.");
-		Validate.notEmpty(strings, "Strings is null or has empty.");
 		
 		for (String log : strings) {
 			log = "<gradient:blue:dark_aqua>MiniJoin</gradient> <green>[INFO] <dark_gray><b>></b> "
@@ -38,7 +37,6 @@ public class Log
 	@SuppressWarnings("unused")
 	public static void warn(@NotNull JavaPlugin plugin, @NotNull String... strings) {
 		Objects.requireNonNull(plugin, "Plugin instance is null.");
-		Validate.notEmpty(strings, "Strings is null or has empty.");
 		
 		for (String log : strings) {
 			log = "<gradient:blue:dark_aqua>MiniJoin</gradient> <yellow>[WARN] <dark_gray><b>></b> "
@@ -59,7 +57,6 @@ public class Log
 	 */
 	public static void error(@NotNull JavaPlugin plugin, @NotNull String... strings) {
 		Objects.requireNonNull(plugin, "Plugin instance is null.");
-		Validate.notEmpty(strings, "Strings is null or has empty.");
 		
 		for (String log : strings) {
 			log = "<gradient:blue:dark_aqua>MiniJoin</gradient> <red>[ERROR] <dark_gray><b>></b> "
