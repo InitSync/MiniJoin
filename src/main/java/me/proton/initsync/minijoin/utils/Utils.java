@@ -8,7 +8,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.title.Title;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,7 +33,6 @@ public class Utils
 	public static Component miniMessage(@NotNull Player player, @NotNull String text)
 	{
 		Objects.requireNonNull(player, "Player is null");
-		Validate.notEmpty(text, "Text is null or has empty.");
 		
 		return MiniMessage.miniMessage()
 			 .deserialize(text,
