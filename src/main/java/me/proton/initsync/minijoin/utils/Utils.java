@@ -1,6 +1,5 @@
 package me.proton.initsync.minijoin.utils;
 
-import me.proton.initsync.minijoin.MiniJoin;
 import me.proton.initsync.minijoin.enums.Configuration;
 import me.proton.initsync.minijoin.enums.Paths;
 import net.kyori.adventure.audience.Audience;
@@ -9,7 +8,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.title.Title;
-import net.luckperms.api.model.group.Group;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
@@ -22,14 +20,12 @@ import java.util.Objects;
 
 public class Utils
 {
-	// It's getting the JavaPlugin instance from the MiniJoin class.
-	private static final MiniJoin PLUGIN = JavaPlugin.getPlugin(MiniJoin.class);
 	// It's getting the prefix from the configuration file.
 	private static final String PREFIX = Configuration.getString(Paths.PREFIX);
 	
 	/**
 	 * It takes a player and a string, and returns a component that has the string parsed with the
-	 * player's name, rank, prefix, level, exp, world, ping, and kills
+	 * player's name, prefix, level, exp, world, ping, and kills
 	 *
 	 * @param player The player to use for the placeholders.
 	 * @param text The text to be parsed.
@@ -40,22 +36,10 @@ public class Utils
 		Objects.requireNonNull(player, "Player is null");
 		Validate.notEmpty(text, "Text is null or has empty.");
 		
-		final Group userGroup = PLUGIN.luckPerms()
-			 .getGroupManager()
-			 .getGroup(Objects.requireNonNull(
-					PLUGIN.luckPerms()
-						 .getUserManager()
-						 .getUser(player.getUniqueId()))
-				  .getPrimaryGroup()
-			 );
-		assert userGroup != null;
-		
 		return MiniMessage.miniMessage()
 			 .deserialize(text,
 				  Placeholder.parsed("player_name", player.getName()),
-					Placeholder.parsed("player_rank",
-						 Objects.requireNonNull(userGroup.getDisplayName())
-					), Placeholder.parsed("prefix", PREFIX),
+				  Placeholder.parsed("prefix", PREFIX),
 				  Placeholder.parsed("player_level", player.getLevel() + ""),
 				  Placeholder.parsed("player_exp", player.getTotalExperience() + ""),
 				  Placeholder.parsed("player_world", player.getWorld().getName()),
