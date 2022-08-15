@@ -3,7 +3,6 @@ package me.proton.initsync.minijoin.utils.actions;
 import me.proton.initsync.minijoin.MiniJoin;
 import me.proton.initsync.minijoin.utils.Log;
 import me.proton.initsync.minijoin.utils.Utils;
-import net.kyori.adventure.bossbar.BossBar;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Sound;
@@ -211,39 +210,6 @@ public class ActionHandler implements Action
 	}
 	
 	/**
-	 * `bossbar` is a function that takes a player and a string and displays a bossbar to the player
-	 *
-	 * @param player The player you want to send the bossbar to.
-	 * @param string The text to display on the bossbar
-	 */
-	@Override
-	public void bossbar(@NotNull Player player, @NotNull String string)
-	{
-		Objects.requireNonNull(player, "Player is null.");
-		Validate.notEmpty(string, "String is null or has empty.");
-		
-		string = string.replace("[bossbar]", "");
-		string = string.trim();
-
-		final String[] split = string.split(";", 5);
-		final String message = split[0];
-		final BossBar.Color color = BossBar.Color.valueOf(split[2]);
-		final BossBar.Overlay overlay = BossBar.Overlay.valueOf(split[3]);
-		final long duration = Long.parseLong(split[4]);
-		final float[] progress = { Float.parseFloat(split[1]) };
-		
-		Utils.bossBar(
-			 this.plugin,
-			 player,
-			 message,
-			 color,
-			 overlay,
-			 progress,
-			 duration
-		);
-	}
-	
-	/**
 	 * Execute the actions.
 	 *
 	 * @param player The player you want to execute the actions.
@@ -274,12 +240,7 @@ public class ActionHandler implements Action
 				title(player, string);
 				return;
 			}
-			case "actionbar" ->
-			{
-				actionbar(player, string);
-				return;
-			}
-			case "bossbar" -> bossbar(player, string);
+			case "actionbar" -> actionbar(player, string);
 		}
 		
 		Log.error(this.plugin, "That action not exist or is invalid.");
