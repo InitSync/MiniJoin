@@ -138,7 +138,8 @@ public class ConfigManager implements Configuration
 	{
 		if (!this.configurationMap.containsKey(fileName))
 		{
-			throw new NullPointerException("The file to get has not been found. Check the name.");
+			Log.error("The file to get has not been found. Check the name.");
+			return null;
 		}
 		return this.configurationMap.get(fileName);
 	}
