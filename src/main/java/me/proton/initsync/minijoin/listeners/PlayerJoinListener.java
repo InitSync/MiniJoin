@@ -6,6 +6,7 @@ import me.proton.initsync.minijoin.api.UserEntryEvent;
 import me.proton.initsync.minijoin.enums.Configuration;
 import me.proton.initsync.minijoin.enums.Paths;
 import me.proton.initsync.minijoin.utils.Utils;
+import me.proton.initsync.minijoin.utils.Log;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -63,7 +64,7 @@ public class PlayerJoinListener implements Listener
 				 .get("config.yml")
 				 .getConfigurationSection("config.join-quit.groups." + userGroup) == null)
 			{
-				throw new NullPointerException("Join Group is null at the configuration.");
+				Log.error("Join Group is null at the configuration.");
 			}
 			else
 			{
