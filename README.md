@@ -2,20 +2,20 @@
 Allows create customizable messages and actions when the player join or leave the server.
 
 # Import
-Gradle (Kotlin DSL):
+Gradle (.kts):
   
-![image](https://user-images.githubusercontent.com/71404592/184976059-82e0ef0b-8f9e-4a87-9941-7acacd4f83fa.png)
+![image](https://user-images.githubusercontent.com/71404592/184992399-9dee2968-948c-4510-a69d-0d0ee089d102.png)
 
-Gradle (Groovy DSL):
+Maven (.xml):
   
-![image](https://user-images.githubusercontent.com/71404592/184976366-87574262-270f-4a5c-b3ba-a34370ed521b.png)
+![image](https://user-images.githubusercontent.com/71404592/184992245-c0095795-8bb5-45f2-a69f-0f30b873010d.png)
 
 # API Usage
 The plugin provide two events at this moment, let's see to view how to use them.
 
-![image](https://user-images.githubusercontent.com/71404592/184989585-d25b7d05-440a-43b5-9163-fa1eeaf18639.png)
+![image](https://user-images.githubusercontent.com/71404592/184992735-967c3eb8-9bce-4c92-8d82-eeb6272f1219.png)
 
-![image](https://user-images.githubusercontent.com/71404592/184989737-4ff60890-e221-4ba2-9b1f-ac4d9d3e84a3.png)
+![image](https://user-images.githubusercontent.com/71404592/184992781-8288cc07-5826-441e-ae41-f22cfa4dbcce.png)
 
 
 # How to Compile
