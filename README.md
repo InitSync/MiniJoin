@@ -1,4 +1,4 @@
-# MiniJoin [![Codacy Badge](https://app.codacy.com/project/badge/Grade/509b6bfab79148f4a8f919a0ccb1c8b4)](https://www.codacy.com/gh/InitSync/MiniJoin/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=InitSync/MiniJoin&amp;utm_campaign=Badge_Grade)
+# MiniJoin [![Codacy Badge](https://app.codacy.com/project/badge/Grade/509b6bfab79148f4a8f919a0ccb1c8b4)](https://www.codacy.com/gh/InitSync/MiniJoin/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=InitSync/MiniJoin&amp;utm_campaign=Badge_Grade) [![](https://jitpack.io/v/InitSync/MiniJoin.svg)](https://jitpack.io/#InitSync/MiniJoin)
 Allows create customizable messages and actions when the player join or leave the server.
 
 # Import
