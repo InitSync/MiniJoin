@@ -22,6 +22,9 @@ The plugin provide two events at this moment, let's see to view how to use them.
 To compile the plugin you must be have Gradle and Java 17+ installed
 at your pc for this.
 
+**Alternately, if you use IntelliJ 'IDEA, can compile the plugin 
+using the Gradle tools default integrated at the IDE.**
+
 At Linux:
 
 ![image](https://user-images.githubusercontent.com/71404592/184979496-6f437df7-8e33-4940-8806-522c5eef9937.png)
