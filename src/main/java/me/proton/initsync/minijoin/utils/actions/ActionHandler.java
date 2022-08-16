@@ -36,7 +36,7 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		string = string.replace("[sound] ", "");
+		string.replace("[sound] ", "");
 		
 		final String[] split = string.split(";", 3);
 		final Sound sound = Sound.valueOf(split[0]);
@@ -81,7 +81,7 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		string = string.replace("[effect] ", "");
+		string.replace("[effect] ", "");
 		
 		final String[] split = string.split(";", 3);
 		final PotionEffectType effectType = PotionEffectType.getByName(split[0]);
@@ -143,7 +143,7 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		string = string.replace("[title] ", "");
+		string.replace("[title] ", "");
 		
 		final String[] split = string.split(";", 5);
 		final String title = split[0];
@@ -194,7 +194,7 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		string = string.replace("[actionbar] ", "");
+		string.replace("[actionbar] ", "");
 		
 		final String[] split = string.split(";", 2);
 		final String message = split[0];
@@ -216,10 +216,7 @@ public class ActionHandler implements Action
 	@Override
 	public void execute(@NotNull Player player, @NotNull String string)
 	{
-		Objects.requireNonNull(player, "Player is null.");
-		Validate.notEmpty(string, "String is null or has empty.");
-		
-		string = StringUtils.substringBetween(string, "[", "]");
+		StringUtils.substringBetween(string, "[", "]");
 		
 		switch (string)
 		{
@@ -238,7 +235,12 @@ public class ActionHandler implements Action
 				title(player, string);
 				return;
 			}
-			case "actionbar" -> actionbar(player, string);
+			case "actionbar" -> 
+			{
+			 	actionbar(player, string);
+				return;
+			}
+			default -> Log.error("That action not exist or is invalid.");
 		}
 		
 		Log.error("That action not exist or is invalid.");
