@@ -13,9 +13,10 @@ Gradle (Groovy DSL):
 # API Usage
 The plugin provide two events at this moment, let's see to view how to use them.
 
-![image](https://user-images.githubusercontent.com/71404592/184978637-c8c269ed-e36e-4ba3-9473-e606202097f4.png)
+![image](https://user-images.githubusercontent.com/71404592/184989585-d25b7d05-440a-43b5-9163-fa1eeaf18639.png)
 
-![image](https://user-images.githubusercontent.com/71404592/184978759-b27584c2-986e-45f0-8259-eecbd4952de7.png)
+![image](https://user-images.githubusercontent.com/71404592/184989737-4ff60890-e221-4ba2-9b1f-ac4d9d3e84a3.png)
+
 
 # How to Compile
 To compile the plugin you must be have Gradle and Java 17+ installed
