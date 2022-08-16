@@ -9,7 +9,7 @@
 # ~~~~~~~~~~
 config:
   # Plugin Prefix.
-  prefix: "<gradient:blue:dark_aqua>MiniJoin</gradient> <dark_gray><b>></b>"
+  prefix: "<gradient:blue:aqua>MiniJoin</gradient> <dark_gray><b>></b>"
 
   sounds:
     # Allow replay sounds?
@@ -29,19 +29,21 @@ config:
 
     # Welcome User Message.
     motd:
-      - "<gradient:aqua:white>               ServerName Network</gradient>"
+      - "<b>"
+      - "<gradient:aqua:white>               ServerName Network"
       - "<green>             Welcome to the Server!"
-      - ""
-      - "<white>Remember invite to your <yellow>Friends and Enjoy!"
-      - ""
+      - "<b>"
+      - "<white> Remember invite to your <yellow>Friends and Enjoy!"
+      - "<b>"
       - "<gradient:yellow:gold>            Social Networks</gradient> <gray>(Do Click)"
-      - "<gradient:green:blue><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'store.com/yourserver'>               Store • </click><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'yourserver.com'>Web • </click><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'twitter.com/@Yourserver'>Twitter • </click><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'discord.io/yourserver'>Discord</click></gradient>"
+      - "<gradient:green:blue><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'store.com/yourserver'>         Store • </click><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'yourserver.com'>Web • </click><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'twitter.com/@Yourserver'>Twitter • </click><hover:show_text:'<yellow>Click to get the link!'><click:open_url:'discord.io/yourserver'>Discord</click></gradient>"
+      - "<b>"
 
     # Groups.
     groups:
       default:
         # Group Join Message.
-        join: "<gray><hover:show_text:'<newline><gray>IGN: <yellow><player_name><newline><gray>Rank: <player_rank><newline><gray>Level: <yellow><player_level><newline><gold>Click to send a message!<newline>'><click:suggest_command:'/msg <player_name>'><player_name></click></gray> <dark_gray><b>></b> <gray>Has joined to server!"
+        join: "<gray><hover:show_text:'<gray>IGN: <yellow><player_name><br><gray>Rank: <yellow>User<br><gray>Level: <yellow><player_level><br><br><gold>Click to send a message!'><click:suggest_command:'/msg <player_name>'><player_name></click></gray> <dark_gray><b>></b> <gray>Has joined to server!"
 
         # Group Join Actions.
         join-actions:
@@ -50,19 +52,18 @@ config:
         # Group Quit Message.
         quit: "<gray><player_name> <dark_gray><b>></b> <gray>If has left the server!"
       admin:
-        join: "<player_rank> <white><hover:show_text:'<newline><gray>IGN: <yellow><player_name><newline><gray>Rank: <player_rank>\n<gray>Level: <yellow><player_level>\n<gold>Click to send a message!<newline>'><click:suggest_command:'/msg <player_name>'><player_name></click></white> <dark_gray><b>></b> <yellow>Has joined to server!"
+        join: "<gradient:red:dark_red>%vault_prefix%</gradient> <white><hover:show_text:'<gray>IGN: <yellow><player_name><br><gray>Rank: <gradient:red:dark_red>%vault_prefix%</gradient><br><gray>Level: <yellow><player_level><br><br><gold>Click to send a message!'><click:suggest_command:'/msg <player_name>'><player_name></click></white> <dark_gray><b>></b> <yellow>Has joined to server!"
         join-actions:
           - "[sound] ENTITY_EXPERIENCE_ORB_PICKUP;1;1"
-          # "[bossbar] <gradient:blue:aqua>Hello World!;0.5;PINK;PROGRESS;100"
-        quit: "<player_rank> <white><player_name> <dark_gray><b>></b> <yellow>If has left the server!"
+        quit: "<gradient:red:dark_red>%vault_prefix%</gradient> <white><player_name> <dark_gray><b>></b> <yellow>If has left the server!"
 
 messages:
   no-perm: "<prefix> <gradient:red:dark_red>You don't have permission for that!"
   no-command: "<prefix> <gradient:red:dark_red>That command has not been added!"
 
   help:
-    - "<gradient:blue:dark_aqua>MiniJoin</gradient> <dark_gray><b>|</b> <white>Available Commands:"
-    - "<gray> - <gold><hover:show_text:'<white>Shows the help<newline><white>plugin message.<newline><newline><yellow>Click to run the command!'><click:run_command:'/mj help'>/minijoin help</click></gold> <white>Shows this message."
-    - "<gray> - <gold><hover:show_text:'<white>Reloads the plugin<newline><white>configuration file.<newline><newline><yellow>Click to run the command!'><click:run_command:'/mj config'>/minijoin config</click></gold> <white>Reload the configuration."
+    - "<gradient:blue:aqua>MiniJoin</gradient> <dark_gray><b>|</b> <white>Available Commands:"
+    - "<gray> - <gold><hover:show_text:'<gray><b>></b> <white>Shows the help<br><gray><b>></b> <white>plugin message.<br><br><yellow>Click to run the command!'><click:run_command:'/mj help'>/minijoin help</click></gold> <white>Shows this message."
+    - "<gray> - <gold><hover:show_text:'<gray><b>></b> <white>Reloads the plugin<br><gray><b>></b> <white>configuration file.<br><br><yellow>Click to run the command!'><click:run_command:'/mj config'>/minijoin config</click></gold> <white>Reload the configuration."
 
-  config: "<prefix> <gradient:green:blue>The plugin configuration has been reloaded successful!"
+  config: "<prefix> <gradient:yellow:gold>The plugin configuration has been reloaded successful!"
