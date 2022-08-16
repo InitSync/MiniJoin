@@ -3,13 +3,12 @@ package me.proton.initsync.minijoin.api;
 import org.apache.commons.lang.Validate;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 public class UserEntryEvent extends Event
 {
 	// It's a list of handlers that will be called when the event is called.
 	private final HandlerList handlers;
-	
 	// It's a variable that will be used to store the join message.
 	private String joinMessage;
 	
@@ -34,8 +33,10 @@ public class UserEntryEvent extends Event
 	 *
 	 * @param joinMessage The message to send to the player when they join.
 	 */
-	public void joinMessage(@Nullable String joinMessage)
+	public void joinMessage(@NotNull String joinMessage)
 	{
+		Validate.notEmpty(joinMessage, "Join message to set is null or has empty.");
+		
 		this.joinMessage = joinMessage;
 	}
 	
