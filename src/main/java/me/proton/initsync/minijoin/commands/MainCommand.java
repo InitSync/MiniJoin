@@ -120,6 +120,16 @@ public class MainCommand implements CommandExecutor
 						 ));
 					return false;
 				}
+				default ->
+				{
+					sender.sendMessage(MiniMessage.miniMessage()
+				 		.deserialize(
+							Configuration.getString(
+							 	Paths.MESSAGE_NO_COMMAND
+							),
+							Placeholder.parsed("prefix", this.prefix)
+				 		));
+				}
 			}
 			
 			sender.sendMessage(MiniMessage.miniMessage()
@@ -205,6 +215,16 @@ public class MainCommand implements CommandExecutor
 					 )
 				));
 				return false;
+			}
+			default ->
+			{
+				sender.sendMessage(MiniMessage.miniMessage()
+				 	.deserialize(
+						Configuration.getString(
+							 Paths.MESSAGE_NO_COMMAND
+						),
+						Placeholder.parsed("prefix", this.prefix)
+				 	));
 			}
 		}
 		
