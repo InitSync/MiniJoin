@@ -19,6 +19,9 @@ import java.util.Objects;
 
 public final class MiniJoin extends JavaPlugin
 {
+	// It's creating a new variable called `instance` and it's private.
+	private static MiniJoin instance;
+	
 	// It's getting the author of the plugin from the plugin.yml file.
 	public final String author = String.join("",
 		 this.getDescription().getAuthors()
@@ -32,6 +35,20 @@ public final class MiniJoin extends JavaPlugin
 	private LuckPerms luckPerms;
 	// It's creating a new variable called `configManager` and it's private.
 	private ConfigManager configManager;
+	
+	/**
+	 * If the instance is null, throw an exception, otherwise return the instance.
+	 *
+	 * @return The instance of the plugin.
+	 */
+	public static MiniJoin instance()
+	{
+		if (instance == null)
+		{
+			throw new IllegalStateException("Tried to access instance when the plugin was disabled!");
+		}
+		return instance;
+	}
 	
 	/**
 	 * If the plugin is disabled, throw an exception. Otherwise, return the plugin.
@@ -80,6 +97,8 @@ public final class MiniJoin extends JavaPlugin
 	{
 		// Plugin startup logic.
 		
+		instance = this;
+		
 		RegisteredServiceProvider<LuckPerms> provider = this.getServer()
 			 .getServicesManager()
 			 .getRegistration(LuckPerms.class);
@@ -87,25 +106,25 @@ public final class MiniJoin extends JavaPlugin
 		{
 			this.luckPerms = provider.getProvider();
 			
-			Log.info(this, "Loaded LuckPerms Dependency as successful.");
+			Log.info("Loaded LuckPerms Dependency as successful.");
 		}
 		
-		this.configManager = new ConfigManager(this, "config.yml");
-		this.actionHandler = new ActionHandler(this);
+		this.configManager = new ConfigManager("config.yml");
+		this.actionHandler = new ActionHandler();
 		
-		Log.info(this, "Loaded ActionHandler as successful.");
+		Log.info("Loaded ActionHandler as successful.");
 		
 		final PluginCommand command = this.getCommand("minijoin");
 		assert command != null;
-		command.setExecutor(new MainCommand(this));
+		command.setExecutor(new MainCommand());
 		command.setTabCompleter(new TabComplete());
 		
 		registerListeners(
-			 new PlayerJoinListener(this),
-			 new PlayerQuitListener(this)
+			 new PlayerJoinListener(),
+			 new PlayerQuitListener()
 		);
 		
-		Log.info(this,
+		Log.info(
 			 "Loaded plugin as successful, running at <dark_gray>(<aqua>" + Bukkit.getMinecraftVersion() +
 			 "<dark_gray>)",
 			 "<white>Developed by <green>" + this.author + " <dark_gray>| <aqua>v" + this.version
@@ -136,9 +155,11 @@ public final class MiniJoin extends JavaPlugin
 		if (this.configManager != null) this.configManager = null;
 		if (this.luckPerms != null) this.luckPerms = null;
 		
-		Log.info(this,
+		Log.info(
 			 "Unloaded plugin as successful",
 			 "<white>Developed by <green>" + this.author + " <dark_gray>| <aqua>v" + this.version
 		);
+		
+		if (instance != null) instance = null;
 	}
 }

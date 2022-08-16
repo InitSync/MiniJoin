@@ -32,9 +32,9 @@ public class MainCommand implements CommandExecutor
 	private final Sound reloadSound;
 	
 	// It's the constructor of the class.
-	public MainCommand(@NotNull MiniJoin plugin)
+	public MainCommand()
 	{
-		this.plugin = Objects.requireNonNull(plugin, "Plugin at the constructor is null.");
+		this.plugin = MiniJoin.instance();
 		this.prefix = Configuration.getString(Paths.PREFIX);
 		this.permSound = Sound.valueOf(Configuration.getString(
 			 Paths.SOUNDS_NO_PERM

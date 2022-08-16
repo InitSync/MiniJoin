@@ -1,5 +1,6 @@
 package me.proton.initsync.minijoin.utils;
 
+import me.proton.initsync.minijoin.MiniJoin;
 import me.proton.initsync.minijoin.enums.Configuration;
 import me.proton.initsync.minijoin.enums.Paths;
 import net.kyori.adventure.audience.Audience;
@@ -7,9 +8,9 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.title.Title;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
@@ -85,19 +86,12 @@ public class Utils
 	/**
 	 * It sends an action bar message to a player for a certain duration
 	 *
-	 * @param plugin The plugin that is running the action bar.
 	 * @param player The player to send the action bar to.
 	 * @param message The message you want to send to the player.
 	 * @param duration The duration of the action bar in milliseconds.
 	 */
-	public static void actionBar(
-		 @NotNull JavaPlugin plugin,
-		 @NotNull Player player,
-		 @NotNull String message,
-		 long duration
-	)
+	public static void actionBar(@NotNull Player player, @NotNull String message, long duration)
 	{
-		Objects.requireNonNull(plugin, "Plugin is null");
 		Objects.requireNonNull(player, "Player is null");
 		Validate.notEmpty(message, "Message is null or has empty.");
 		
@@ -113,7 +107,10 @@ public class Utils
 				repeater -= 40L;
 				if (repeater - 20L < 40L) cancel();
 			}
-		}.runTaskTimerAsynchronously(plugin, 0L, 40L);
+		}.runTaskTimerAsynchronously(
+			 MiniJoin.instance(),
+			 0L, 40L
+		);
 	}
 	
 	/**

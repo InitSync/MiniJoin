@@ -2,7 +2,6 @@ package me.proton.initsync.minijoin.enums;
 
 import me.proton.initsync.minijoin.MiniJoin;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.Objects;
 public class Configuration
 {
 	// It's just a reference to the plugin instance.
-	private static final MiniJoin PLUGIN = JavaPlugin.getPlugin(MiniJoin.class);
+	private static final MiniJoin PLUGIN = MiniJoin.instance();
 	
 	/**
 	 * It gets a string from the config.yml file

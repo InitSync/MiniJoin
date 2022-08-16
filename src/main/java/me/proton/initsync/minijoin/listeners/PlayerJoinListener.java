@@ -11,20 +11,18 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Objects;
 
 public class PlayerJoinListener implements Listener
 {
-	// A reference to the main class.
+	// It's a variable that is used to get the instance of the plugin.
 	private final MiniJoin plugin;
 	
-	// It's a constructor that is used to initialize the `plugin` variable.
-	public PlayerJoinListener(@NotNull MiniJoin plugin)
+	// It's a constructor.
+	public PlayerJoinListener()
 	{
-		this.plugin = Objects.requireNonNull(plugin, "Plugin is null at the constructor.");
+		this.plugin = MiniJoin.instance();
 	}
 	
 	/**

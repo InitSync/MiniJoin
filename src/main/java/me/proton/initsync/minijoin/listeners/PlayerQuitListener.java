@@ -11,19 +11,16 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class PlayerQuitListener implements Listener
 {
-	// A private variable that is used to store the plugin instance.
+	// It's creating a new instance of the MiniJoin class.
 	private final MiniJoin plugin;
 	
-	// Checking if the plugin is null.
-	public PlayerQuitListener(@NotNull MiniJoin plugin)
+	// It's a constructor.
+	public PlayerQuitListener()
 	{
-		this.plugin = Objects.requireNonNull(plugin, "Plugin is null at the constructor.");
+		this.plugin = MiniJoin.instance();
 	}
 	
 	/**

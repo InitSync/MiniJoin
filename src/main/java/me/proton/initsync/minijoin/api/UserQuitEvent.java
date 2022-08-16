@@ -1,14 +1,15 @@
 package me.proton.initsync.minijoin.api;
 
-import org.apache.commons.lang.Validate;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class UserQuitEvent extends Event
 {
 	// It's a variable that will be used to store the quit message.
 	private final HandlerList handlers;
+	
 	// It's a variable that will be used to store the quit message.
 	private String quitMessage;
 	
@@ -23,6 +24,7 @@ public class UserQuitEvent extends Event
 	 *
 	 * @return The quitMessage variable is being returned.
 	 */
+	@Nullable
 	public String quitMessage()
 	{
 		return this.quitMessage;
@@ -33,10 +35,8 @@ public class UserQuitEvent extends Event
 	 *
 	 * @param quitMessage The message to send to the player when they quit.
 	 */
-	public void quitMessage(@NotNull String quitMessage)
+	public void quitMessage(@Nullable String quitMessage)
 	{
-		Validate.notEmpty(quitMessage, "Quit message to set is null or has empty.");
-		
 		this.quitMessage = quitMessage;
 	}
 	

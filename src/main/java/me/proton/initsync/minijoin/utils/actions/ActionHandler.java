@@ -15,13 +15,13 @@ import java.util.Objects;
 
 public class ActionHandler implements Action
 {
-	// It's a reference to the plugin instance.
+	// It's a reference to the main class.
 	private final MiniJoin plugin;
 	
 	// It's a constructor.
-	public ActionHandler(@NotNull MiniJoin plugin)
+	public ActionHandler()
 	{
-		this.plugin = Objects.requireNonNull(plugin, "Plugin instance is null at the constructor.");
+		this.plugin = MiniJoin.instance();
 	}
 	
 	/**
@@ -36,8 +36,7 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		string = string.replace("[sound]", "");
-		string = string.trim();
+		string = string.replace("[sound] ", "");
 		
 		final String[] split = string.split(";", 3);
 		final Sound sound = Sound.valueOf(split[0]);
@@ -51,7 +50,7 @@ public class ActionHandler implements Action
 		}
 		catch (NumberFormatException e)
 		{
-			Log.error(this.plugin,
+			Log.error(
 				 "Failed to parse the sound parameters.",
 				 "Using the default values."
 			);
@@ -82,8 +81,7 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		string = string.replace("[effect]", "");
-		string = string.trim();
+		string = string.replace("[effect] ", "");
 		
 		final String[] split = string.split(";", 3);
 		final PotionEffectType effectType = PotionEffectType.getByName(split[0]);
@@ -99,7 +97,7 @@ public class ActionHandler implements Action
 		}
 		catch (NumberFormatException e)
 		{
-			Log.error(this.plugin,
+			Log.error(
 				 "Failed to parse the effect parameters.",
 				 "Using the default values."
 			);
@@ -124,9 +122,12 @@ public class ActionHandler implements Action
 			this.plugin
 				 .getServer()
 				 .getScheduler()
-				 .runTaskLater(plugin, () -> {
-					 player.addPotionEffect(new PotionEffect(effectType, finalDuration, finalAmplifier));
-				 }, 1L);
+				 .runTaskLater(
+					  MiniJoin.instance(),
+					  () ->
+					  {
+							player.addPotionEffect(new PotionEffect(effectType, finalDuration, finalAmplifier));
+						}, 1L);
 		}
 	}
 	
@@ -142,8 +143,7 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		string = string.replace("[title]", "");
-		string = string.trim();
+		string = string.replace("[title] ", "");
 		
 		final String[] split = string.split(";", 5);
 		final String title = split[0];
@@ -160,7 +160,7 @@ public class ActionHandler implements Action
 		}
 		catch (NumberFormatException e)
 		{
-			Log.error(this.plugin,
+			Log.error(
 				 "Failed to parse the title parameters.",
 				 "Using the default values."
 			);
@@ -194,15 +194,13 @@ public class ActionHandler implements Action
 		Objects.requireNonNull(player, "Player is null.");
 		Validate.notEmpty(string, "String is null or has empty.");
 		
-		string = string.replace("[actionbar]", "");
-		string = string.trim();
+		string = string.replace("[actionbar] ", "");
 		
 		final String[] split = string.split(";", 2);
 		final String message = split[0];
 		final long duration = Long.parseLong(split[1]);
 		
 		Utils.actionBar(
-			 this.plugin,
 			 player,
 			 message,
 			 duration
@@ -243,6 +241,6 @@ public class ActionHandler implements Action
 			case "actionbar" -> actionbar(player, string);
 		}
 		
-		Log.error(this.plugin, "That action not exist or is invalid.");
+		Log.error("That action not exist or is invalid.");
 	}
 }
