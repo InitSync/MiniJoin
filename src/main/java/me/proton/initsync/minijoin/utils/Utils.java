@@ -3,10 +3,12 @@ package me.proton.initsync.minijoin.utils;
 import me.proton.initsync.minijoin.enums.Configuration;
 import me.proton.initsync.minijoin.enums.Paths;
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.title.Title;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -32,6 +34,7 @@ public class Utils
 	public static Component miniMessage(@NotNull Player player, @NotNull String text)
 	{
 		Objects.requireNonNull(player, "Player is null");
+		Validate.notEmpty(text, "Text is null or has empty.");
 		
 		return MiniMessage.miniMessage()
 			 .deserialize(text,
@@ -117,6 +120,62 @@ public class Utils
 	}
 	
 	/**
+	 * It displays a boss bar with a message that is formatted with the MiniMessage API, and it disappears
+	 * after a certain amount of time
+	 *
+	 * @param plugin The plugin that is running the boss bar.
+	 * @param player The player to send the boss bar to.
+	 * @param message The message to be displayed.
+	 * @param color The color of the boss bar.
+	 * @param overlay The overlay of the boss bar.
+	 * @param progress The progress of the boss bar.
+	 * @param duration The duration of the boss bar in milliseconds.
+	 */
+	public static void bossBar(
+		 @NotNull JavaPlugin plugin,
+		 @NotNull Player player,
+		 @NotNull String message,
+		 @NotNull BossBar.Color color,
+		 @NotNull BossBar.Overlay overlay,
+		 float[] progress,
+		 long duration
+	)
+	{
+		Objects.requireNonNull(plugin, "Plugin is null");
+		Objects.requireNonNull(player, "Player is null");
+		Validate.notEmpty(message, "Message is null or has empty.");
+		Objects.requireNonNull(color, "Color is null");
+		Objects.requireNonNull(overlay, "Overlay is null");
+		
+		final Component msg = miniMessage(player, message);
+		final BossBar bossBar = BossBar.bossBar(
+			 msg,
+			 progress[0],
+			 color,
+			 overlay
+		);
+		
+		new BukkitRunnable()
+		{
+			long repeater = duration;
+			
+			@Override
+			public void run()
+			{
+				player.showBossBar(bossBar);
+				
+				progress[0]++;
+				repeater -= 40L;
+				if (repeater - 20L < 40L)
+				{
+					player.hideBossBar(bossBar);
+					cancel();
+				}
+			}
+		}.runTaskTimerAsynchronously(plugin, 0L, 40L);
+	}
+	
+	/**
 	 * > This function sends a message to the audience
 	 *
 	 * @param audience The audience to send the message to.
@@ -124,6 +183,7 @@ public class Utils
 	public static void message(@NotNull Audience audience, @NotNull String... messages)
 	{
 		Objects.requireNonNull(audience, "Audience is null");
+		Validate.notEmpty(messages, "Messages is null or has empty.");
 		
 		for (String msg : messages)
 		{
